@@ -2,6 +2,16 @@
   min-height: 100vh;
   width: 100%;
   display: flex;
+  flex-direction: column;
+  color: #fff;
+  font-family: inherit;
+}
+
+/* ---------- Hero section ---------- */
+.hero {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
   align-items: center;
   justify-content: center;
   padding: 24px;
@@ -15,8 +25,6 @@
   );
   background-size: 400% 400%;
   animation: gradientShift 18s ease infinite;
-  color: #fff;
-  font-family: inherit;
 }
 
 @keyframes gradientShift {
@@ -86,8 +94,97 @@
   letter-spacing: 0.01em;
 }
 
+/* ---------- About Me section ---------- */
+.about {
+  position: relative;
+  width: 100%;
+  background: #1a1a2e;
+  padding: 120px 24px;
+  display: flex;
+  justify-content: center;
+}
+
+.about::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    #764ba2 25%,
+    #667eea 50%,
+    #4facfe 75%,
+    transparent 100%
+  );
+  opacity: 0.85;
+}
+
+.about__container {
+  max-width: 700px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.9s ease-out, transform 0.9s ease-out;
+}
+
+.about--visible .about__container {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.about__photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.about__name {
+  margin: 8px 0 0;
+  font-size: clamp(2rem, 4.5vw, 2.75rem);
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: 0.01em;
+}
+
+.about__role {
+  margin: 0;
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+  font-size: clamp(0.85rem, 1.6vw, 1rem);
+  color: #8b8fa3;
+  letter-spacing: 0.04em;
+}
+
+.about__bio {
+  margin: 12px 0 0;
+  font-size: clamp(1rem, 1.8vw, 1.125rem);
+  line-height: 1.7;
+  color: #ffffff;
+  opacity: 0.85;
+  max-width: 620px;
+}
+
 @media (max-width: 600px) {
   .card {
     padding: 40px 28px;
+  }
+
+  .about {
+    padding: 80px 20px;
+  }
+
+  .about__photo {
+    width: 130px;
+    height: 130px;
   }
 }
