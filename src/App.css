@@ -1,27 +1,30 @@
 .app {
   min-height: 100vh;
+  min-height: 100dvh;
   width: 100%;
   display: flex;
   flex-direction: column;
-  color: #fff;
-  font-family: inherit;
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
 }
 
 /* ---------- Hero section ---------- */
 .hero {
+  position: relative;
   min-height: 100vh;
+  min-height: 100dvh;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 24px;
+  padding: var(--space-xl);
   background: linear-gradient(
     135deg,
-    #667eea 0%,
-    #764ba2 25%,
-    #f093fb 50%,
-    #4facfe 75%,
-    #667eea 100%
+    var(--color-hero-gradient-1) 0%,
+    var(--color-hero-gradient-2) 25%,
+    var(--color-hero-gradient-3) 50%,
+    var(--color-hero-gradient-4) 75%,
+    var(--color-hero-gradient-1) 100%
   );
   background-size: 400% 400%;
   animation: gradientShift 18s ease infinite;
@@ -41,15 +44,15 @@
 
 .card {
   text-align: center;
-  padding: 56px 64px;
+  padding: var(--space-2xl) var(--space-3xl);
   border-radius: 24px;
-  background: rgba(255, 255, 255, 0.12);
+  background: var(--color-glass-bg);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
-  animation: floatIn 0.9s ease-out both;
-  max-width: 90vw;
+  border: 1px solid var(--color-glass-border);
+  box-shadow: 0 20px 60px var(--color-shadow-card);
+  animation: floatIn var(--duration-entrance) var(--ease-out) both;
+  max-width: min(90vw, 560px);
 }
 
 @keyframes floatIn {
@@ -68,13 +71,13 @@
   font-weight: 700;
   letter-spacing: -0.02em;
   margin: 0;
+  color: #ffffff;
   background: linear-gradient(120deg, #ffffff 0%, #fce7f3 50%, #ffffff 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  color: transparent;
-  animation: shine 4s linear infinite;
+  animation: shine 4s linear 3;
 }
 
 @keyframes shine {
@@ -87,19 +90,65 @@
 }
 
 .subtitle {
-  margin-top: 16px;
+  margin-top: var(--space-md);
   font-size: clamp(0.95rem, 2vw, 1.125rem);
   font-weight: 400;
   opacity: 0.9;
   letter-spacing: 0.01em;
 }
 
+/* ---------- Scroll indicator ---------- */
+.scroll-hint {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  animation: fadeInHint 600ms var(--ease-out) 1.2s forwards;
+}
+
+.scroll-hint__label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+.scroll-hint__chevron {
+  width: 20px;
+  height: 20px;
+  border-right: 2px solid rgba(255, 255, 255, 0.5);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+  transform: rotate(45deg);
+  animation: bounceChevron 2s ease-in-out infinite;
+}
+
+@keyframes fadeInHint {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes bounceChevron {
+  0%, 100% {
+    transform: rotate(45deg) translateY(0);
+  }
+  50% {
+    transform: rotate(45deg) translateY(6px);
+  }
+}
+
 /* ---------- About Me section ---------- */
 .about {
   position: relative;
   width: 100%;
-  background: #1a1a2e;
-  padding: 120px 24px;
+  background: var(--color-about-bg);
+  padding: var(--space-section) var(--space-xl);
   display: flex;
   justify-content: center;
 }
@@ -114,9 +163,9 @@
   background: linear-gradient(
     90deg,
     transparent 0%,
-    #764ba2 25%,
-    #667eea 50%,
-    #4facfe 75%,
+    var(--color-hero-gradient-2) 25%,
+    var(--color-hero-gradient-1) 50%,
+    var(--color-hero-gradient-4) 75%,
     transparent 100%
   );
   opacity: 0.85;
@@ -129,10 +178,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: var(--space-lg);
   opacity: 0;
   transform: translateY(24px);
-  transition: opacity 0.9s ease-out, transform 0.9s ease-out;
+  transition: opacity var(--duration-scroll) var(--ease-out),
+    transform var(--duration-scroll) var(--ease-out);
 }
 
 .about--visible .about__container {
@@ -145,35 +195,36 @@
   height: 150px;
   border-radius: 50%;
   object-fit: cover;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  border: 1px solid var(--color-about-photo-border);
+  box-shadow: 0 10px 30px var(--color-shadow-photo);
 }
 
 .about__name {
-  margin: 8px 0 0;
+  margin: var(--space-xs) 0 0;
   font-size: clamp(2rem, 4.5vw, 2.75rem);
   font-weight: 600;
-  color: #ffffff;
+  color: var(--color-text-primary);
   letter-spacing: 0.01em;
 }
 
 .about__role {
   margin: 0;
-  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
-  font-size: clamp(0.85rem, 1.6vw, 1rem);
-  color: #8b8fa3;
+  font-family: var(--font-mono);
+  font-size: clamp(0.9375rem, 1.6vw, 1rem);
+  color: var(--color-about-role);
   letter-spacing: 0.04em;
 }
 
 .about__bio {
-  margin: 12px 0 0;
+  margin: var(--space-sm) 0 0;
   font-size: clamp(1rem, 1.8vw, 1.125rem);
   line-height: 1.7;
-  color: #ffffff;
+  color: var(--color-text-primary);
   opacity: 0.85;
   max-width: 620px;
 }
 
+/* ---------- Mobile ---------- */
 @media (max-width: 600px) {
   .card {
     padding: 40px 28px;
@@ -186,5 +237,43 @@
   .about__photo {
     width: 130px;
     height: 130px;
+  }
+
+  .scroll-hint {
+    bottom: 24px;
+  }
+}
+
+/* ---------- Reduced Motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .hero {
+    animation: none;
+    background-size: 100% 100%;
+  }
+
+  .card {
+    animation: none;
+    opacity: 1;
+  }
+
+  .title {
+    animation: none;
+    background-size: 100% auto;
+    background-position: 0% center;
+  }
+
+  .about__container {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .scroll-hint {
+    animation: none;
+    opacity: 1;
+  }
+
+  .scroll-hint__chevron {
+    animation: none;
   }
 }

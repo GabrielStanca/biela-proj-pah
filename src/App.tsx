@@ -36,6 +36,11 @@ function App() {
             Welcome to your React + Vite + TypeScript app
           </p>
         </div>
+
+        <div className="scroll-hint" aria-hidden="true">
+          <span className="scroll-hint__label">Scroll</span>
+          <span className="scroll-hint__chevron" />
+        </div>
       </section>
 
       <section
@@ -49,6 +54,8 @@ function App() {
             className="about__photo"
             src="https://im.runware.ai/image/os/w01d10/ws/2/ii/f284fed0-e233-46b1-8cba-41d98767fe49.webp"
             alt="Portrait of Jane Doe"
+            width={150}
+            height={150}
             data-ai-id="profile-photo"
             data-testid="profile-photo"
             loading="lazy"
